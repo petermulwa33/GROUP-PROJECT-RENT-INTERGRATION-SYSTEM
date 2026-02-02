@@ -20,7 +20,7 @@ import {
 const formatKES = (amount) => {
   return `KES ${amount.toLocaleString('en-KE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
 }
-.
+
 export function InvoicesPage() {
   const navigate = useNavigate()
   
