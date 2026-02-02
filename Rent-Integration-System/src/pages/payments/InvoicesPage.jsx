@@ -123,6 +123,7 @@ export function InvoicesPage() {
 
 // Header component with Create Invoice button
 function Header({ onCreateClick }) {
+  // render the header with tittle , description and create button
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
       <div>
@@ -139,6 +140,7 @@ function Header({ onCreateClick }) {
 // Form to create or edit an invoice
 function InvoiceForm({ onClose, onCreate, onUpdate, editingInvoice }) {
   // Initialize form with existing data if editing, otherwise empty
+  // use state to track from inputes
   const [formData, setFormData] = useState({
     tenantName: editingInvoice?.tenantName || '',
     propertyName: editingInvoice?.propertyName || '',
