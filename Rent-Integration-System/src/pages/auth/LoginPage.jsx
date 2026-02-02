@@ -72,6 +72,14 @@ export function LoginPage() {
           {isLoading ? 'Signing in...' : 'Sign In'}
         </button>
       </form>
+       <div style={{ marginTop: 8 }}>
+         <Link
+           to="/forgot-password"
+           style={{ fontSize: '0.9rem', color: '#6ea8fe', textDecoration: 'none' }}
+  >
+    Forgot your password?
+  </Link>
+</div>
 
       <p>
         Don't have an account? <Link to="/register">Sign up</Link>
