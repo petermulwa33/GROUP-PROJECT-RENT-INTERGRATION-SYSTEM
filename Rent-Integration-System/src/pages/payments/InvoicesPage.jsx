@@ -45,6 +45,7 @@ export function InvoicesPage() {
   const forceRefresh = () => {
     setRefreshCounter(prev => prev + 1)
   }
+  ''
 
   // Function to open the create form
   const handleCreateClick = () => {
