@@ -13,6 +13,7 @@ function IntegrationCard({ integration, onConnect, onDisconnect }) {
     paypal: 'https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg',
     bank: '',
   }
+  // define the gradient colors for different providers
 
   const providerColors = {
     stripe: 'from-purple-500/20 to-indigo-500/20',
@@ -20,6 +21,11 @@ function IntegrationCard({ integration, onConnect, onDisconnect }) {
     paypal: 'from-blue-600/20 to-blue-400/20',
     bank: 'from-emerald-500/20 to-teal-500/20',
   }
+  // render the intergration card with appropriate details and actions  based on connection status
+  // use framer-motion for animation effects
+  //display provider logo , name , type , connection status , last sync time and action buttons
+  //use conditionall rendering for different states and providers
+
 
   return (
     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -29,7 +35,7 @@ function IntegrationCard({ integration, onConnect, onDisconnect }) {
             {integration.provider === 'bank' ? (
               <div className="w-12 h-12 rounded-xl bg-emerald-500/30 flex items-center justify-center">
                 <span className="text-2xl">🏦</span>
-              </div>
+              </div> // display bank icon for bank provider
             ) : (
               <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center p-2">
                 <img
@@ -37,7 +43,7 @@ function IntegrationCard({ integration, onConnect, onDisconnect }) {
                   alt={integration.name}
                   className="w-full h-full object-contain"
                 />
-              </div>
+              </div> // display provider logo
             )}
             <div>
               <h3 className="text-lg font-semibold text-white">{integration.name}</h3>
@@ -47,13 +53,13 @@ function IntegrationCard({ integration, onConnect, onDisconnect }) {
           <Badge variant={integration.connected ? 'success' : 'default'} dot>
             {integration.connected ? 'Connected' : 'Not Connected'}
           </Badge>
-        </div>
+        </div> 
 
         {integration.connected && integration.lastSync && (
           <div className="flex items-center gap-2 text-sm text-slate-400 mb-4">
             <RefreshCwIcon className="w-4 h-4" />
             <span>Last synced: {formatDateTime(integration.lastSync)}</span>
-          </div>
+          </div> // display last sync if connected
         )}
 
         <div className="flex items-center gap-3">
