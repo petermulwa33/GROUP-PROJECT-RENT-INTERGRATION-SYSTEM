@@ -1,16 +1,128 @@
-# React + Vite
+RentFlow – Rent Integration System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+RentFlow is a frontend React application for managing rental operations. It provides a clean interface to handle properties, tenants, payments, and maintenance using simulated data.
 
-Currently, two official plugins are available:
+This project showcases a structured React setup with reusable components and page-based routing.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
+Authentication
 
-## React Compiler
+User registration and login
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Form validation
 
-## Expanding the ESLint configuration
+Auth state stored in browser local storage
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Redirects after successful login or signup
+
+Dashboard
+
+Summary cards
+
+Activity and payment charts
+
+Responsive layout
+
+Property Management
+
+View all properties
+
+Add new properties
+
+View property details
+
+Tenant Management
+
+View tenants
+
+Add tenants
+
+View tenant details
+
+Payments
+
+Payment list
+
+Invoices
+
+Payment detail pages
+
+Maintenance
+
+Maintenance request list
+
+Maintenance request details
+
+Demo Credentials
+
+Email: admin@rentflow.com
+
+Password: RentFlow2024!
+
+Project Structure
+src/
+├── assets/        # Images and static assets
+├── components/    # Reusable components
+│   ├── dashboard
+│   ├── layout
+│   ├── payments
+│   └── ui
+├── pages/         # Application pages
+│   ├── auth
+│   ├── payments
+│   ├── properties
+│   ├── tenants
+│   ├── maintenance
+│   └── DashboardPage.jsx
+├── utils/         # Helpers and mock data
+├── App.jsx        # Root component
+└── main.jsx       # Entry point
+
+Tech Stack
+
+React
+
+JavaScript (ES6)
+
+React Router
+
+Local Storage (simulated persistence)
+
+How It Works
+
+Authentication is fully frontend-based
+
+User and session data are stored in the browser
+
+Routing is handled client-side
+
+Mock data replaces backend services
+
+Limitations
+
+No backend or database
+
+No real authentication or security
+
+Data is browser-specific and not shared
+
+Future Improvements
+
+Backend integration
+
+Secure authentication
+
+Role-based access control
+
+Real-time data updates
+
+Getting Started
+
+Install dependencies:
+
+npm install
+
+
+Start the development server:
+
+npm run dev
