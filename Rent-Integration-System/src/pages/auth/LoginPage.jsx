@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { MailIcon, LockIcon, EyeIcon, EyeOffIcon } from 'lucide-react'
-import { toast } from 'sonner'
 import { AuthLayout } from '../../components/layout/AuthLayout'
 import { Input } from '../../components/ui/Input'
 import { Button } from '../../components/ui/Button'
@@ -16,62 +15,38 @@ export function LoginPage() {
   const navigate = useNavigate()
 
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    rememberMe: false,
   })
-
   const [errors, setErrors] = useState({})
 
-  const validateForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
     const newErrors = {}
 
     if (!formData.email) {
       newErrors.email = 'Email is required'
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email'
     }
 
     if (!formData.password) {
       newErrors.password = 'Password is required'
-    } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters'
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors)
+      return
+    }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    if (!validateForm()) return
-
-    setIsLoading(true)
-
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000))
-
-    // Check credentials
     if (
       formData.email === VALID_CREDENTIALS.email &&
       formData.password === VALID_CREDENTIALS.password
     ) {
       localStorage.setItem('isAuthenticated', 'true')
       localStorage.setItem('userEmail', formData.email)
-
-      if (formData.rememberMe) {
-        localStorage.setItem('rememberMe', 'true')
-      }
-
-      setIsLoading(false)
-      toast.success('Welcome back!')
       navigate('/')
     } else {
-      setIsLoading(false)
-      toast.error('Invalid email or password')
       setErrors({
         email: 'Invalid credentials',
         password: 'Invalid credentials',
@@ -103,39 +78,27 @@ export function LoginPage() {
         <Input
           label="Email address"
           type="email"
-          placeholder="admin@rentflow.com"
           value={formData.email}
           onChange={(e) =>
-            setFormData({
-              ...formData,
-              email: e.target.value,
-            })
+            setFormData({ ...formData, email: e.target.value })
           }
           error={errors.email}
           leftIcon={<MailIcon className="w-5 h-5" />}
-          autoComplete="email"
         />
 
         <Input
           label="Password"
           type={showPassword ? 'text' : 'password'}
-          placeholder="Enter your password"
           value={formData.password}
           onChange={(e) =>
-            setFormData({
-              ...formData,
-              password: e.target.value,
-            })
+            setFormData({ ...formData, password: e.target.value })
           }
           error={errors.password}
           leftIcon={<LockIcon className="w-5 h-5" />}
-          autoComplete="current-password"
           rightIcon={
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="hover:text-white transition-colors"
-              aria-label={showPassword ? 'Hide password' : 'Show password'}
             >
               {showPassword ? (
                 <EyeOffIcon className="w-5 h-5" />
@@ -146,36 +109,7 @@ export function LoginPage() {
           }
         />
 
-        <div className="flex items-center justify-between">
-          <label className="flex items-center gap-2 cursor-pointer">
-            <input
-              type="checkbox"
-              checked={formData.rememberMe}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  rememberMe: e.target.checked,
-                })
-              }
-              className="w-4 h-4 rounded border-slate-600 bg-surface-dark text-primary-500 focus:ring-primary-500 focus:ring-offset-0"
-            />
-            <span className="text-sm text-slate-400">Remember me</span>
-          </label>
-
-          <Link
-            to="/forgot-password"
-            className="text-sm text-primary-400 hover:text-primary-300 transition-colors"
-          >
-            Forgot password?
-          </Link>
-        </div>
-
-        <Button
-          type="submit"
-          className="w-full"
-          size="lg"
-          isLoading={isLoading}
-        >
+        <Button type="submit" className="w-full" size="lg">
           Sign in
         </Button>
 
@@ -183,7 +117,7 @@ export function LoginPage() {
           Don't have an account?{' '}
           <Link
             to="/register"
-            className="text-primary-400 hover:text-primary-300 font-medium transition-colors"
+            className="text-primary-400 hover:text-primary-300 font-medium"
           >
             Sign up
           </Link>
